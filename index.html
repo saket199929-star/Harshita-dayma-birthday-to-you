@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#170d2d">
+<title>A Little Surprise For You 💖</title>
+<style>
+:root{--pink:#ff72b6;--lav:#c7a7ff;--gold:#ffd98a;--bg:#10091f}
+*{box-sizing:border-box}
+body{margin:0;min-height:100vh;font-family:system-ui,-apple-system,Segoe UI,sans-serif;color:#fff;background:radial-gradient(ellipse at 20% 0%,#49205f 0%,transparent 42%),radial-gradient(ellipse at 100% 70%,#34205c 0%,transparent 40%),var(--bg);overflow-x:hidden}
+.stars,.confetti{position:fixed;inset:0;pointer-events:none;overflow:hidden}
+.star{position:absolute;width:3px;height:3px;border-radius:50%;background:#fff;opacity:.7;animation:twinkle 2.5s infinite alternate}
+@keyframes twinkle{to{opacity:.15;transform:scale(.5)}}
+.wrap{width:min(92%,560px);margin:auto;padding:34px 0 55px;text-align:center;position:relative;z-index:1}
+.pill{display:inline-block;border:1px solid #ffffff35;background:#ffffff0c;padding:8px 14px;border-radius:999px;font-size:12px;letter-spacing:1.5px;color:#f5d9ff}
+h1{font-size:clamp(36px,10vw,62px);line-height:1.02;margin:22px 0 14px;letter-spacing:-2px}
+.gradient{background:linear-gradient(90deg,#fff,#ffacd4,#c9aaff);-webkit-background-clip:text;background-clip:text;color:transparent}
+p{color:#e4d8ef;line-height:1.65}
+.hero{margin:26px 0 20px;font-size:72px;filter:drop-shadow(0 0 22px #ff72b66b);animation:float 3s ease-in-out infinite}
+@keyframes float{50%{transform:translateY(-10px) rotate(3deg)}}
+button{border:0;border-radius:999px;padding:14px 20px;font-weight:750;font-size:15px;cursor:pointer;transition:transform .2s,filter .2s}
+button:active{transform:scale(.96)}
+.primary{background:linear-gradient(100deg,#ff79b8,#c29aff);color:#27112f;box-shadow:0 9px 28px #d75cae40}
+.secondary{background:#ffffff12;color:#fff;border:1px solid #ffffff2c}
+.buttons{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin:22px 0}
+.card{background:linear-gradient(135deg,#ffffff13,#ffffff07);border:1px solid #ffffff20;border-radius:24px;padding:23px;margin:18px 0;box-shadow:0 18px 55px #0002;backdrop-filter:blur(8px)}
+.card h2{margin:0 0 10px;font-size:23px}
+.hidden{display:none!important}
+.meter{height:8px;border-radius:99px;background:#ffffff17;overflow:hidden;margin:16px 0}
+.meter span{display:block;height:100%;width:0;background:linear-gradient(90deg,#ff79b8,#c29aff);border-radius:99px;transition:width 1.5s}
+.reason{font-size:18px;min-height:58px;display:grid;place-items:center;color:#ffe5f2}
+.cake{font-size:90px;cursor:pointer;display:inline-block;transition:transform .25s;user-select:none}
+.cake:active{transform:scale(1.15)}
+.small{font-size:12px;color:#b9a9ce}
+footer{margin-top:28px;color:#aa99c0;font-size:12px}
+.heart{position:fixed;bottom:-30px;animation:rise 5s linear forwards;pointer-events:none;z-index:4}
+@keyframes rise{to{transform:translateY(-110vh) rotate(30deg);opacity:0}}
+.pop{animation:pop .5s ease both}
+@keyframes pop{from{opacity:0;transform:translateY(15px) scale(.98)}to{opacity:1;transform:none}}
+.gift{font-size:80px;animation:wiggle 1.5s infinite;cursor:pointer}
+@keyframes wiggle{0%,100%{transform:rotate(-4deg)}50%{transform:rotate(4deg)}}
+a{color:#ffb7da}
+
+.gallery{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-top:18px}
+.photo{margin:0;background:#fff;padding:7px 7px 12px;border-radius:8px;box-shadow:0 8px 22px #0003;transform:rotate(var(--tilt));transition:transform .25s}
+.photo:hover{transform:rotate(0deg) translateY(-3px)}
+.photo img{display:block;width:100%;aspect-ratio:3/4;object-fit:cover;border-radius:4px}
+.photo figcaption{color:#6a365f;font-family:Georgia,serif;font-size:13px;margin-top:8px}
+@media(min-width:460px){.gallery{grid-template-columns:repeat(3,minmax(0,1fr))}}
+</style>
+</head>
+<body>
+<div class="stars" id="stars"></div><div class="confetti" id="confetti"></div>
+<main class="wrap">
+  <span class="pill">✨ A TINY UNIVERSE, JUST FOR YOU, HARSHITA ✨</span>
+  <div class="hero">💌</div>
+  <h1 class="gradient">Hey, Harshita Dayma!</h1>
+  <p>I made you a little something…<br>Warning: may cause smiling, blushing, and eye-rolls. 😌💗</p>
+  <div class="buttons"><button class="primary" id="openBtn">Open your surprise 💝</button><button class="secondary" id="musicBtn">♫ Play birthday tune</button></div>
+  <p class="small">Put your volume on 🎶</p>
+
+  <section class="card hidden pop" id="surprise">
+    <div class="gift" id="gift">🎁</div>
+    <h2>One gift. Unlimited love.</h2>
+    <p>Tap the gift. No, it isn't an iPhone… my heart's already expensive enough. 😂</p>
+    <button class="primary" id="giftBtn">Okay, open it! 🎀</button>
+  </section>
+
+
+  <section class="card hidden pop" id="gallery">
+    <h2>Harshita's little universe 📸💗</h2>
+    <p>Every picture has its own little magic. And yes, I'm definitely biased. 😌💕</p>
+    <div class="gallery">
+      <figure class="photo" style="--tilt:-2deg"><img src="photos/harshita-1.jpg" alt="Harshita photo 1" loading="lazy"><figcaption>Pretty girl energy ✨</figcaption></figure>\n      <figure class="photo" style="--tilt:1.5deg"><img src="photos/harshita-2.jpg" alt="Harshita photo 2" loading="lazy"><figcaption>Traditional queen 👑</figcaption></figure>\n      <figure class="photo" style="--tilt:-1deg"><img src="photos/harshita-3.jpg" alt="Harshita photo 3" loading="lazy"><figcaption>That smile though 🥹</figcaption></figure>\n      <figure class="photo" style="--tilt:1.3deg"><img src="photos/harshita-4.jpg" alt="Harshita photo 4" loading="lazy"><figcaption>Beauty with a little mischief 💖</figcaption></figure>\n      <figure class="photo" style="--tilt:-1.5deg"><img src="photos/harshita-5.jpg" alt="Harshita photo 5" loading="lazy"><figcaption>My favourite close-up 🌷</figcaption></figure>\n      <figure class="photo" style="--tilt:2deg"><img src="photos/harshita-6.jpg" alt="Harshita photo 6" loading="lazy"><figcaption>Grace in every pose 💫</figcaption></figure>\n      <figure class="photo" style="--tilt:-1deg"><img src="photos/harshita-7.jpg" alt="Harshita photo 7" loading="lazy"><figcaption>Pink looks perfect on you 💗</figcaption></figure>\n      <figure class="photo" style="--tilt:1.7deg"><img src="photos/harshita-8.jpg" alt="Harshita photo 8" loading="lazy"><figcaption>Bookworm cutie 📚</figcaption></figure>\n      <figure class="photo" style="--tilt:-1.4deg"><img src="photos/harshita-9.jpg" alt="Harshita photo 9" loading="lazy"><figcaption>Simply unforgettable 🌙</figcaption></figure>\n    </div>
+    <p style="margin-top:18px">A little collection of my favourite reasons to smile. 💌</p>
+  </section>
+  <section class="card hidden pop" id="reasons">
+    <h2>Reasons you're my favourite 💖</h2>
+    <div class="reason" id="reason">You're cute even when you're being dramatic. 😭💕</div>
+    <div class="meter"><span id="meter"></span></div>
+    <div class="buttons"><button class="secondary" id="nextReason">Another reason ➜</button></div>
+  </section>
+
+  <section class="card hidden pop" id="wish">
+    <h2>🎂 Make a wish!</h2>
+    <div class="cake" id="cake" role="button" aria-label="Blow out the candle">🎂</div>
+    <p id="wishText">Take a deep breath… then tap the cake to blow out the candle. 🕯️</p>
+    <button class="primary" id="blowBtn">Blow the candle 🕯️</button>
+  </section>
+
+  <section class="card hidden pop" id="final">
+    <div style="font-size:52px">💗🌙✨</div>
+    <h2>Happy Birthday, Harshita Dayma!</h2>
+    <p>Harshita, may your year be full of little joys, big dreams, belly laughs, and all the love you deserve.</p>
+    <p><b>And remember:</b> you're not getting older… you're becoming a limited edition. 😎🎀</p>
+    <p style="font-size:20px;color:#ffb9dc">I love you more than words can say, Harshita. 💋</p>
+    <button class="secondary" id="againBtn">Replay the magic ↻</button>
+  </section>
+  <footer>Made with a little code and a whole lot of 💖</footer>
+</main>
+<script>
+const $=id=>document.getElementById(id);
+for(let i=0;i<75;i++){let s=document.createElement('i');s.className='star';s.style.left=Math.random()*100+'%';s.style.top=Math.random()*100+'%';s.style.animationDelay=Math.random()*3+'s';s.style.width=s.style.height=(1+Math.random()*3)+'px';$('stars').appendChild(s)}
+let reasonIndex=0;
+const reasons=[
+"You're cute even when you're being dramatic. 😭💕",
+"Your smile could fix my whole day. ☀️",
+"You're my favourite notification. 📱💗",
+"You make ordinary moments feel special. ✨",
+"You're beautiful… yes, even when you steal my food. 🍟😂",
+"I'd choose you in every lifetime. 🌙",
+"Your laugh is my favourite sound. 🥹",
+"You're my person, my peace, and my chaos. 💞",
+"You're dangerously adorable. This is a serious issue. 🚨",
+"Because life is sweeter with you in it. 🍰"
+];
+$('openBtn').onclick=()=>{$('surprise').classList.remove('hidden');$('gallery').classList.remove('hidden');$('surprise').scrollIntoView({behavior:'smooth',block:'center'});hearts(18);};
+$('giftBtn').onclick=()=>{$('gift').textContent='💝';$('reasons').classList.remove('hidden');$('wish').classList.remove('hidden');$('reasons').scrollIntoView({behavior:'smooth',block:'center'});confetti();};
+$('gift').onclick=()=>$('giftBtn').click();
+$('nextReason').onclick=()=>{reasonIndex=(reasonIndex+1)%reasons.length;$('reason').textContent=reasons[reasonIndex];$('meter').style.width=((reasonIndex+1)/reasons.length*100)+'%';hearts(4)};
+function blow(){ $('cake').textContent='🍰';$('wishText').textContent='Wish sent to the universe! ✨ May it come true, Harshita. 💗';$('final').classList.remove('hidden');confetti();hearts(30);$('final').scrollIntoView({behavior:'smooth',block:'center'});$('blowBtn').textContent='Wish made! 💫';$('blowBtn').disabled=true;}
+$('cake').onclick=blow;$('blowBtn').onclick=blow;
+$('againBtn').onclick=()=>{document.querySelectorAll('.card').forEach(c=>c.classList.add('hidden'));$('openBtn').scrollIntoView({behavior:'smooth'});$('cake').textContent='🎂';$('wishText').textContent='Take a deep breath… then tap the cake to blow out the candle. 🕯️';$('blowBtn').disabled=false;$('blowBtn').textContent='Blow the candle 🕯️';reasonIndex=0;$('reason').textContent=reasons[0];$('meter').style.width='0';};
+function hearts(n){for(let i=0;i<n;i++){let h=document.createElement('div');h.className='heart';h.textContent=['💗','💖','💕','✨','💘'][Math.floor(Math.random()*5)];h.style.left=Math.random()*100+'vw';h.style.fontSize=(16+Math.random()*24)+'px';h.style.animationDuration=(3+Math.random()*3)+'s';document.body.appendChild(h);setTimeout(()=>h.remove(),6500)}}
+function confetti(){for(let i=0;i<90;i++){let c=document.createElement('div');c.textContent=['🎉','✨','💖','🎊','💕'][Math.floor(Math.random()*5)];c.style.position='fixed';c.style.left=Math.random()*100+'vw';c.style.top='-30px';c.style.fontSize=(14+Math.random()*18)+'px';c.style.zIndex=10;c.style.pointerEvents='none';c.style.transition='transform 2.8s linear,opacity 2.8s';document.body.appendChild(c);requestAnimationFrame(()=>{c.style.transform=`translate(${Math.random()*160-80}px, ${window.innerHeight+100}px) rotate(${Math.random()*500}deg)`;c.style.opacity='0'});setTimeout(()=>c.remove(),3000)}}
+// Tiny original synthesized birthday-style tune; no external audio file needed.
+let audioCtx=null,playing=false,loopTimer=null;
+function playTune(){const AC=window.AudioContext||window.webkitAudioContext;if(!AC){alert('Audio is not supported in this browser.');return}if(playing){clearTimeout(loopTimer);playing=false;$('musicBtn').textContent='♫ Play birthday tune';return}audioCtx=audioCtx||new AC();audioCtx.resume();playing=true;$('musicBtn').textContent='Ⅱ Pause birthday tune';const notes=[523,523,587,523,698,659,523,523,587,523,784,698,523,523,1046,880,698,659,587];let i=0;function note(){if(!playing)return;let now=audioCtx.currentTime;let osc=audioCtx.createOscillator(),gain=audioCtx.createGain();osc.type='sine';osc.frequency.value=notes[i%notes.length];gain.gain.setValueAtTime(.0001,now);gain.gain.exponentialRampToValueAtTime(.12,now+.025);gain.gain.exponentialRampToValueAtTime(.0001,now+.28);osc.connect(gain);gain.connect(audioCtx.destination);osc.start(now);osc.stop(now+.3);i++;loopTimer=setTimeout(note,330)}note()}
+$('musicBtn').onclick=playTune;
+</script>
+</body>
+</html>
